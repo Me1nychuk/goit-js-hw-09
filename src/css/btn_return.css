@@ -1,0 +1,15 @@
+.link-return {
+  display: block;
+  max-width: 300px;
+  margin: 0 auto;
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 8px;
+  background: #4e75ff;
+  transition: background-color 0.3s ease-in-out;
+}
+.link-return:hover {
+  background-color: #6c8cff;
+}

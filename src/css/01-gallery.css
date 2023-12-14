@@ -1,0 +1,23 @@
+.gallery {
+  margin: 50px auto;
+  max-width: 1440px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+}
+.gallery-item {
+  max-width: 360px;
+}
+.gallery-image {
+  max-width: 100%;
+  object-fit: cover;
+}
+.simple-lightbox {
+  background-color: #2e2f42cc;
+}
+
+.simple-lightbox button {
+  color: white !important;
+}
