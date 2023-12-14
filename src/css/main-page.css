@@ -1,7 +1,7 @@
 ul.navigation {
   font-family: 'Montserrat', sans-serif;
   width: 400px;
-  margin: 400px auto;
+  margin: 200px auto;
   display: flex;
   padding: 16px;
   flex-direction: column;
