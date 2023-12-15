@@ -6,15 +6,21 @@ const currentObj = {
     email:'',
     message:'',
 } 
-let obj = '';
+let localStorageData = '';
 const localStorageKey = "feedback-form-state";
-obj = localStorage.getItem(localStorageKey) ?? "";
-if (obj !== "") {
-    currentObj.email = JSON.parse(obj).email;
-     currentObj.message = JSON.parse(obj).message;
-    inputEmail.value = currentObj.email;
-    inputText.value = currentObj.message;
+try {
+    localStorageData = JSON.parse(localStorage.getItem(localStorageKey)) ?? {};
+    
+    if (localStorageData && typeof localStorageData === 'object') {
+        currentObj.email = localStorageData.email ||'';
+        currentObj.message = localStorageData.message || '';
+        inputEmail.value = currentObj.email;
+        inputText.value = currentObj.message;
 }
+} catch(error) {
+     console.error('Error parsing JSON:', error);
+}
+
 
 const upLoadNewDate = (event) => {
     const target = event.target;
@@ -23,15 +29,21 @@ const upLoadNewDate = (event) => {
     } else if(target === inputText) {
          currentObj.message = target.value;
     }
-    obj = JSON.stringify(currentObj);
-    localStorage.setItem(localStorageKey,obj)
+    localStorageData = JSON.stringify(currentObj);
+    localStorage.setItem(localStorageKey,localStorageData)
 };
 form.addEventListener('input',upLoadNewDate)
 
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
+    if (inputEmail.value.trim() === "" || inputText.value.trim() === '') {
+        alert(`Будь ласка, заповніть всі поля форми перед відправленням.`);
+        return;
+    }
     console.log(JSON.parse(localStorage.getItem(localStorageKey)));
     localStorage.removeItem(localStorageKey);
-   form.reset();
+    currentObj.email = '';
+    currentObj.message = '';
+    form.reset();
 })
